@@ -74,8 +74,9 @@ class Services extends Client
 
         $services   = $this->getServices();
         $isShortURL = false;
-        foreach ($services as $service=>$info) {
-            if (stripos($url, $service) !== false) {
+		$domain = str_ireplace('www.', '', parse_url($url, PHP_URL_HOST));
+        foreach ($services as $service => $info) {
+            if ($service === $domain) {
                 $isShortURL = true;
                 break;
             }
