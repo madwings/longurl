@@ -11,60 +11,59 @@ use tzfrs\LongURL\Exceptions\ExpandException;
  * This class is used to make requests to the expand endpoint of the longURL API
  *
  * @package tzfrs\LongURL\Services
- * @version 0.0.5
  * @author tzfrs
  * @license MIT License
  */
 class Expand extends Client
 {
-    /**
-     * The endpoint that is used for requests to the API
-     * @var string
-     */
-    protected $endpoint = 'expand';
+	/**
+	 * The endpoint that is used for requests to the API
+	 * @var string
+	 */
+	protected $endpoint = 'expand';
 
-    /**
-     * This method makes a rquest to the expand endpoint and gets the long version of an URL
-     *
-     * The method takes a short URL and makes a request to the API of longurl.org. Then, if it was successful,
-     * meaning there wasn't an Exception the Content XML is parsed and the long-url is extracted from the response.
-     * Otherwise an Exception is thrown.
-     *
-     * @see Client::request
-     *
-     * @param string $url The URL that should be expanded
-     * @param string $format The format in which the response should be returned. Defaults to xml
-     * @return string Returns the long URL version of the short URL
-     * @throws ExpandException Throws an Exception when there was an Error
-     */
-    public function expandURL($url, $format = 'json')
-    {
-        $cacheName = md5(__FUNCTION__ . $url . $format);
+	/**
+	 * This method makes a rquest to the expand endpoint and gets the long version of an URL
+	 *
+	 * The method takes a short URL and makes a request to the API of longurl.org. Then, if it was successful,
+	 * meaning there wasn't an Exception the Content XML is parsed and the long-url is extracted from the response.
+	 * Otherwise an Exception is thrown.
+	 *
+	 * @see Client::request
+	 *
+	 * @param string $url The URL that should be expanded
+	 * @param string $format The format in which the response should be returned. Defaults to xml
+	 * @return string Returns the long URL version of the short URL
+	 * @throws ExpandException Throws an Exception when there was an Error
+	 */
+	public function expandURL($url, $format = 'json')
+	{
+		$cacheName = md5(__FUNCTION__ . $url . $format);
 
-        if ($this->useCache) {
-            $content = $this->cache->get_cache($cacheName);
-            if ($content !== false) {
-                $content = json_decode($content);
-                return $content->{'long-url'};
-            }
-        }
-        // Check if a short url has been passed
-        if ((new Services)->isShortURL($url) === false) {
-            return $url;
-        }
+		if ($this->config->useCacheExpandUrl === true) {
+			$content = $this->cache->get_cache($cacheName);
+			if ($content !== false) {
+				$content = json_decode($content);
+				return $content->{'long-url'};
+			}
+		}
+		// Check if a short url has been passed
+		if ((new Services)->isShortURL($url) === false) {
+			return $url;
+		}
 
-        $parameters['url']  = $url;
-        $stream     = $this->request($parameters, $format);
-        if ($stream instanceof Stream) {
-            $content = $stream->getContents();
-            $content = $format === 'json' ? json_decode($content) : $this->parseXML($content);
+		$parameters['url']  = $url;
+		$stream = $this->request($parameters, $format);
+		if ($stream instanceof Stream) {
+			$content = $stream->getContents();
+			$content = $format === 'json' ? json_decode($content) : $this->parseXML($content);
 
-            if ($this->useCache === true) {
-                $this->cache->set_cache($cacheName, json_encode($content));
-            }
+			if ($this->config->useCacheExpandUrl === true) {
+				$this->cache->set_cache($cacheName, json_encode($content));
+			}
 
-            return $content->{'long-url'};
-        }
-        throw new ExpandException($stream);
-    }
+			return $content->{'long-url'};
+		}
+		throw new ExpandException($stream);
+	}
 }
