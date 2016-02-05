@@ -1,5 +1,5 @@
 <?php
-namespace tzfrs\LongURL\Config;
+namespace tzfrs\LongURL;
 
 /**
  * Class Config
@@ -19,7 +19,7 @@ class Config {
 	public $useCacheGetServices = true;
 	
 	/**
-	 * Wheter to use cache for expanded urls
+	 * Wheter to use cache for short urls
 	 *
 	 * @var bool
 	 */
@@ -33,7 +33,7 @@ class Config {
 	public $useCacheExpandUrl = false;
 	
 	/**
-	 * Wheter to use cache for expanded urls
+	 * Cache path
 	 *
 	 * @var string
 	 */

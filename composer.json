@@ -3,16 +3,17 @@
 	"description": "This library extends short URLs to longURLs",
 	"minimum-stability": "stable",
 	"license": "MIT",
-	"authors": [
-	{
+	"config": {
+        "vendor-dir": "vendor"
+    },
+	"authors": [{
 		"name": "Stiliyan Ivanov",
 		"email": "stily.c@gmail.com"
-	}
-	],
+	}],
 	"autoload" : {
-	  "psr-4" : {
-		"tzfrs\\LongURL\\" : "src/"
-	  }
+		"psr-4" : {
+			"tzfrs\\LongURL\\" : "src/"
+		}
 	},
 	"require": {
 		"guzzlehttp/guzzle": "^6.0",

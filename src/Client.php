@@ -3,7 +3,7 @@
 namespace tzfrs\LongURL;
 
 use Gilbitron\Util\SimpleCache;
-use \GuzzleHttp\Client as GuzzleClient;
+use GuzzleHttp\Client as GuzzleClient;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\ServerException;
 
@@ -13,9 +13,8 @@ use GuzzleHttp\Exception\ServerException;
  * This class is the base class of the library. It handles requests, and has methods that are usable by multiple service
  * endpoints. It acts as a "wrapper" for all services.
  *
- * @package tzfrs\LongURL
- * @version 0.0.5
- * @author tzfrs
+ * @package madwings\LongURL
+ * @author MadWings
  * @license MIT License
  */
 class Client
@@ -51,10 +50,10 @@ class Client
 	/**
 	 * The constructor for the class defines if caching should be used
 	 */
-	public function __construct(tzfrs\LongURL\Config $config = null)
+	public function __construct(Config $config = null)
 	{
-		if ($config !== null) {
-			$this->config = new Config;
+		if ($config === null) {
+			$this->config = new Config();
 		} else {
 			$this->config = $config;
 		}
