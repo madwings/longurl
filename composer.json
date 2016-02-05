@@ -1,24 +1,24 @@
 {
-  "name": "tzfrs/longurl",
-  "description": "This library extends short URLs to longURLs",
-  "minimum-stability": "stable",
-  "license": "proprietary",
-  "authors": [
-    {
-      "name": "Theo Tzaferis",
-      "email": "theo@tzfrs.de"
-    }
-  ],
-  "autoload" : {
-    "psr-4" : {
-      "tzfrs\\LongURL\\" : "src/"
-    }
-  },
-  "require": {
-    "guzzlehttp/guzzle": "^6.0",
-    "gilbitron/php-simplecache": "^1.4"
-  },
-  "require-dev": {
-    "phpunit/phpunit": "4.8.*"
-  }
+	"name": "madwins/longurl",
+	"description": "This library extends short URLs to longURLs",
+	"minimum-stability": "stable",
+	"license": "MIT",
+	"authors": [
+	{
+		"name": "Stiliyan Ivanov",
+		"email": "stily.c@gmail.com"
+	}
+	],
+	"autoload" : {
+	  "psr-4" : {
+		"tzfrs\\LongURL\\" : "src/"
+	  }
+	},
+	"require": {
+		"guzzlehttp/guzzle": "^6.0",
+		"gilbitron/php-simplecache": "^1.4"
+	},
+	"require-dev": {
+	  "phpunit/phpunit": "4.8.*"
+	}
 }
