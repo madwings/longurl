@@ -1,5 +1,4 @@
 <?xml version="1.0" encoding="UTF-8"?>
-
 <phpunit
 	bootstrap="../vendor/autoload.php"
 	colors="true"
@@ -10,9 +9,8 @@
 	stopOnIncomplete="false"
 	stopOnSkipped="false">
 	<testsuites>
-		<testsuite name="longurl">
-			<directory suffix="ExpandTest.php">./</directory>
-			<directory suffix="ServicesTest.php">./</directory>
+		<testsuite name="Longurl testing suit">
+			<directory suffix=".php">./</directory>
 		</testsuite>
 	</testsuites>
 	<filter>
