@@ -1,5 +1,4 @@
-.. image:: https://travis-ci.org/madwings/longurl.svg?branch=develop
-    :target: https://travis-ci.org/madwings/longurl
+[![Build Status](https://travis-ci.org/madwings/longurl.svg?branch=develop)](https://travis-ci.org/madwings/longurl)
     
 # longurl
 
