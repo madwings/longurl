@@ -1,3 +1,6 @@
+.. image:: https://travis-ci.org/madwings/longurl.svg?branch=develop
+    :target: https://travis-ci.org/madwings/longurl
+    
 # longurl
 
 This library can be used to expand short URLs such as https://t.co/XdXRudPXH5 and get the URL that is behind the short URL
