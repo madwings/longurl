@@ -107,7 +107,7 @@ class Client
 	 *
 	 * @return mixed
 	 */
-	protected function parseXML($xml, $asArray = false)
+	protected function parseXML($xml, $asArray = true)
 	{
 		$xml = new \SimpleXMLElement($xml, LIBXML_NOCDATA);
 		$json = json_encode($xml);

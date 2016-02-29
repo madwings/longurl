@@ -39,7 +39,7 @@ class ServicesTest extends \PHPUnit_Framework_TestCase
     public function testGetServices()
     {
         $response = self::$services->getServices();
-        $this->assertInstanceOf(\stdClass::class, $response);
+        $this->assertInternalType('array', $response);
     }
 
 }

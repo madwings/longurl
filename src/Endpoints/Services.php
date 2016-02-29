@@ -33,10 +33,15 @@ class Services extends Client
 	{
 		$cacheName = md5(__FUNCTION__ . $format);
 
+		$customServices = null;
+		if ($this->config->servicesPath) {
+			$customServices = $this->parseXML($this->config->servicesPath);
+		}
+
 		if ($this->config->useCacheGetServices) {
 			$content = $this->cache->get_cache($cacheName);
 			if ($content !== false) {
-				return $format === 'json' ? json_decode($content) : $this->parseXML($content);
+				return $this->formatServices($content, $customServices, $format);
 			}
 		}
 
@@ -46,7 +51,7 @@ class Services extends Client
 			if ($this->config->useCacheGetServices === true) {
 				$this->cache->set_cache($cacheName, $content);
 			}
-			return $format === 'json' ? json_decode($content) : $this->parseXML($content);
+			return $this->formatServices($content, $customServices, $format);
 		}
 		throw new ServicesException($stream);
 	}
@@ -86,5 +91,22 @@ class Services extends Client
 		}
 		
 		return $isShortURL;
+	}
+
+	/**
+	 * Proper formating of the services result
+	 *
+	 * @param array $services
+	 * @param array $customServices
+	 * @param string $format
+	 * @return array
+	 */
+	private function formatServices($services, $customServices, $format) {
+		$services = $format === 'json' ? json_decode($services, true) : $this->parseXML($services);
+		if ( ! empty($customServices)) {
+			$services = array_merge($services, $customServices);
+		}
+
+		return $services;
 	}
 }

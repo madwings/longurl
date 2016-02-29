@@ -38,4 +38,11 @@ class Config {
 	 * @var string
 	 */
 	public $cachePath = '/tmp/';
+
+	/**
+	 * Custom Services XML file path, set null if not used
+	 *
+	 * @var string
+	 */
+	public $servicesPath = null;
 }
