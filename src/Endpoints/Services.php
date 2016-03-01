@@ -35,7 +35,7 @@ class Services extends Client
 
 		$customServices = null;
 		if ($this->config->servicesPath) {
-			$customServices = $this->parseXML($this->config->servicesPath);
+			$customServices = $this->parseXML(file_get_contents($this->config->servicesPath));
 		}
 
 		if ($this->config->useCacheGetServices) {
@@ -102,7 +102,7 @@ class Services extends Client
 	 * @return array
 	 */
 	private function formatServices($services, $customServices, $format) {
-		$services = $format === 'json' ? json_decode($services, true) : $this->parseXML($services);
+		$services = $format === 'json' ? json_decode($services, true) : $this->parseXML($services, true);
 		if ( ! empty($customServices)) {
 			$services = array_merge($services, $customServices);
 		}

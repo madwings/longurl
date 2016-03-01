@@ -103,15 +103,18 @@ class Client
 	 * into json. It's optional to get the JSON as array or as objects
 	 *
 	 * @param string $xml The XML that should be parsed
-	 * @param bool $asArray If the returned json should be an array or a json
+	 * @param bool $asArray If the result should be an array or an object
 	 *
 	 * @return mixed
 	 */
 	protected function parseXML($xml, $asArray = true)
 	{
 		$xml = new \SimpleXMLElement($xml, LIBXML_NOCDATA);
-		$json = json_encode($xml);
-		
-		return json_decode($json, $asArray);
+		$result = array();
+		foreach ($xml->services->service as $service) {
+			$result[(string)$service] = array('domain' => (string)$service, 'regex' => (string)$service['regex']);
+		}
+
+		return $asArray === true ? $result : (object)$result;
 	}
 }
