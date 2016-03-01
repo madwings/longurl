@@ -45,4 +45,30 @@ class Config {
 	 * @var string
 	 */
 	public $servicesPath = null;
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Set custom services filepath
+	 *
+	 * @param	string	$filePath
+	 *
+	 * @return	void
+	 */
+	public function setCustomServices($filePath) {
+		$this->servicesPath = $filePath;
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
+	 * Set cache filepath
+	 *
+	 * @param	string	$filePath
+	 *
+	 * @return	void
+	 */
+	public function setCachePath($filePath) {
+		$this->cachePath = $filePath;
+	}
 }
