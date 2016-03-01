@@ -49,6 +49,19 @@ class Config {
 	// --------------------------------------------------------------------
 
 	/**
+	 * Class constructor
+	 *
+	 * @param	array	$params
+	 *
+	 * @return	void
+	 */
+	public function __construct(array $params = null) {
+		
+	}
+
+	// --------------------------------------------------------------------
+
+	/**
 	 * Set custom services filepath
 	 *
 	 * @param	string	$filePath
