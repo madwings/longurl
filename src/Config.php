@@ -56,7 +56,11 @@ class Config {
 	 * @return	void
 	 */
 	public function __construct(array $params = null) {
-		
+		if ( ! empty($params)) {
+			foreach ($params as $key => $value) {
+				$this->$key = $value;
+			}
+		}
 	}
 
 	// --------------------------------------------------------------------
